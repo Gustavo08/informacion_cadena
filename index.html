@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ejercicio</title>
+</head>
+<body>
+   <script>
+      /*
+         función que dada una cadena, devuelva un arreglo de con su:
+
+         longitud,
+         Primer caracter
+         ultimo caracter
+         caracter de en medio, si la cadena tiene un numero impar de longitud, regresa
+         dos caracteres de en medio, si no, solo 1 caracter de en medio
+         - Psición del segundo caracter si se repite, si vuelve aparecer en la cadena
+         se myestra en el formato @ posición # y si no se repite se muestra el mensaje:
+         "no encontrado"
+      */
+
+      function dataString ( str ) {
+         let length = str.length; // numero de caracteres
+         let first = str[0]; // primer caracter
+         let last = str[length - 1]; // ultimo caracter (tomamos la cantidad de caracteres -1 )
+         let middle = length % 2 === 0 ? str.slice(length / 2 - 1, length / 2 + 1) : str[Math.floor(length / 2)];
+         /*
+            HAcemos un ternario validando si la longitud de caracteres es par, si es par con el metodo
+            slice extraemos los dos caracteres de en medio iniciando (longitud / 2 -1) y fin (longitud / 2 + 1)
+            si es impar obtenemos un caracter la longitud / 2, hacemos uso del metodo floor para que devuelva
+            el valor entero mas bajo de la cantidad dada, por ejemplo de 4.5, regresaria 4
+         */
+        let index = [...str].indexOf(str[1], 2);
+        /* iteramos el string y buscamos donde se encuentra nuevamente el segundo caracter, por eso str[1], iniciando
+         a partir de la segunda posicion, si no se encuentra el caracter, regresa -1, caso contrario devuelve la posicion
+        */
+
+        return [length, first, last, middle, index > -1 ? `@ posición ${ index }` : 'no encontrado'];
+      }
+
+      let test1 = 'computadora'; // 11, 'c', 'a', 't', '@ posición 8'
+      let test2 = 'laptop'; // 6, 'l', 'p', 'pt', 'no encontrado'
+
+      let response = dataString(test2);
+
+      console.log("=== response ===");
+      console.log(response);
+   </script>
+</body>
+</html>
